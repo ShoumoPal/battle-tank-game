@@ -4,28 +4,35 @@ using UnityEngine;
 public class TankView : MonoBehaviour
 {
     private TankController TankController { get; set; }
-    private float horizontal;
-    private float vertical;
+    private float rotation;
+    private float forward;
     [SerializeField] private Joystick joystick;
 
-    private void Update()
+    private void FixedUpdate()
     {
         Movement();
-        if(horizontal != 0 || vertical != 0)
+        if(rotation != 0 || forward != 0)
         {
-            Debug.Log("Tank moving");
-            TankController.Move(horizontal, vertical);
+            TankController.Move(rotation, forward);
         }
     }
-
+    private void LateUpdate()
+    {
+        Camera.main.transform.position = transform.position + new Vector3(-40f, 40f, -25f);
+    }
     private void Movement()
     {
-        horizontal = joystick.Horizontal;
-        vertical = joystick.Vertical;
+        rotation = joystick.Horizontal;
+        forward = joystick.Vertical;
     }
 
     public void SetTankController(TankController _tankController)
     {
         TankController = _tankController;
+    }
+
+    public Rigidbody GetRigidbody()
+    {
+        return GetComponent<Rigidbody>();
     }
 }

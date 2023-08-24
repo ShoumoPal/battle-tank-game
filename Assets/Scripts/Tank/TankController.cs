@@ -4,6 +4,7 @@ public class TankController
 {
     private TankModel TankModel { get; }
     private TankView TankView { get; }
+    private Rigidbody tankRb;
 
     public TankController(TankModel _tankModel, TankView _tankView)
     {
@@ -11,13 +12,14 @@ public class TankController
         TankView = GameObject.Instantiate<TankView>(_tankView);
         TankView.SetTankController(this);
         Debug.Log("Tank View created", _tankView);
+        tankRb = TankView.GetComponent<Rigidbody>();
     }
-    public void Move(float x, float y)
+    public void Move(float rotation, float forward)
     {
-        Vector3 tankPos = TankView.gameObject.transform.position;
-        tankPos = new Vector3(tankPos.x + x * TankModel.GetSpeed() * Time.deltaTime,
-                              0,
-                              tankPos.z + y * TankModel.GetSpeed() * Time.deltaTime);
-        TankView.gameObject.transform.position = tankPos;
+        Vector3 newTankPos = TankView.transform.position + (TankView.transform.forward * TankModel.GetSpeed() * forward * Time.deltaTime);
+        tankRb.MovePosition(newTankPos);
+
+        Quaternion newTankRot = TankView.transform.rotation * Quaternion.Euler(Vector3.up * (rotation * 70 * Time.deltaTime));
+        tankRb.MoveRotation(newTankRot);
     }
 }
