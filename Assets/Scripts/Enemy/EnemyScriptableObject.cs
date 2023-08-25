@@ -4,4 +4,7 @@ using UnityEngine;
 public class EnemyScriptableObject : ScriptableObject
 {
     public EnemyView enemyView;
+    public float speed;
+    public float range;
+    public GameObject deathExplosion;
 }

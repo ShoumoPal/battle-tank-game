@@ -13,7 +13,7 @@ public class TankSpawner : MonoBehaviour
 
     private TankController CreateTank()
     {
-        int randomNumber = (int)Random.Range(0, TankScriptableObjectList.tanks.Length);
+        int randomNumber = (int)Random.Range(0, TankScriptableObjectList.tanks.Length - 1);
         TankScriptableObject tankObject = TankScriptableObjectList.tanks[randomNumber];
         Debug.Log("Created tank of type: " + tankObject.name);
         TankModel model = new TankModel(tankObject);

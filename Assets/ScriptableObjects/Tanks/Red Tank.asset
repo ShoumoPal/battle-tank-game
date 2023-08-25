@@ -17,3 +17,4 @@ MonoBehaviour:
   health: 100
   speed: 20
   tankView: {fileID: 762570285120580284, guid: 30b27c34e115520479b180733677e47a, type: 3}
+  shootClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}

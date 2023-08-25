@@ -16,3 +16,5 @@ MonoBehaviour:
     type: 3}
   speed: 50
   explosionType: {fileID: 195792, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
+  explosionClip: {fileID: 8300000, guid: 3a77defcde1caaa40b6f7502547e0c4e, type: 3}
+  source: {fileID: 6667422592330728580, guid: e50dc747027d1ee40ba5101ada304df1, type: 3}

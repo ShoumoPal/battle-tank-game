@@ -24,6 +24,10 @@ public class TankController
         Quaternion newTankRot = TankView.transform.rotation * Quaternion.Euler(Vector3.up * (rotation * 70 * Time.deltaTime));
         tankRb.MoveRotation(newTankRot);
     }
+    public TankModel GetTankModel()
+    {
+        return TankModel;
+    }
     public void ShootBullet()
     {
         bulletSpawner.SpawnBullet(bulletSpawner.transform);

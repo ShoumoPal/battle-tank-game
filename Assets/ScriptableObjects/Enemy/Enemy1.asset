@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyView: {fileID: 5944406888357570347, guid: b6058cbb35e2fa6458a0266d9ff1e2a1,
     type: 3}
+  speed: 10
+  range: 20
+  deathExplosion: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}

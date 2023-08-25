@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyModel : MonoBehaviour
+public class EnemyModel
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public EnemyController EnemyController { get; set; }
+    public float Speed { get; set; }
+    public float Range { get; set; }
+    public  GameObject Explosion { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    public EnemyModel(EnemyScriptableObject enemyScriptableObject)
     {
-        
+        Speed = enemyScriptableObject.speed;
+        Range = enemyScriptableObject.range;
+        Explosion = enemyScriptableObject.deathExplosion;
     }
 }

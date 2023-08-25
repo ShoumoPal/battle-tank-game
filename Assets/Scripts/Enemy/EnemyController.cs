@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private EnemyModel EnemyModel { get; set; }
+    private EnemyView EnemyView { get; set; }
+    private NavMeshAgent NavMeshAgent { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    public EnemyController(EnemyModel model, EnemyView view, Vector3 spawnPoint)
     {
-        
+        EnemyModel = model;
+        EnemyView = GameObject.Instantiate<EnemyView>(view, spawnPoint, Quaternion.identity);
+        Debug.Log("Enemy created");
+        EnemyView.SetEnemyController(this);
+    }
+    public EnemyModel GetEnemyModel()
+    {
+        return EnemyModel;
     }
 }

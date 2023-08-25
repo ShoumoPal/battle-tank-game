@@ -13,7 +13,7 @@ public class TankView : MonoBehaviour
 
     private void Start()
     {
-        shootButton.onClick.AddListener(Shoot);
+        //shootButton.onClick.AddListener(Shoot);
     }
     private void FixedUpdate()
     {
@@ -50,6 +50,8 @@ public class TankView : MonoBehaviour
 
     public void Shoot()
     {
+        AudioClip clip = TankController.GetTankModel().shootClip;
+        gameObject.GetComponent<AudioSource>().PlayOneShot(clip);
         TankController.ShootBullet();
     }
 }

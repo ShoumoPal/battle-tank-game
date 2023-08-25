@@ -16,6 +16,10 @@ public class BulletView : MonoBehaviour
     {
         BulletController.Fly();
     }
+    private void Update()
+    {
+        Destroy(gameObject, 5f);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         //explode
@@ -24,7 +28,9 @@ public class BulletView : MonoBehaviour
             BulletModel model = BulletController.GetBulletModel();
             GameObject explosion = Instantiate(model.explosionType, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(gameObject);
+            BulletController.GetBulletModel().explosionSource.PlayOneShot(BulletController.GetBulletModel().explosionClip);
             Destroy(explosion, 1.5f);
         }
+
     }
 }
