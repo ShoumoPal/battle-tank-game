@@ -5,6 +5,7 @@ public class TankController
     private TankModel TankModel { get; }
     private TankView TankView { get; }
     private Rigidbody tankRb;
+    private BulletSpawner bulletSpawner;
 
     public TankController(TankModel _tankModel, TankView _tankView)
     {
@@ -12,7 +13,8 @@ public class TankController
         TankView = GameObject.Instantiate<TankView>(_tankView);
         TankView.SetTankController(this);
         Debug.Log("Tank View created", _tankView);
-        tankRb = TankView.GetComponent<Rigidbody>();
+        tankRb = TankView.GetRigidbody();
+        bulletSpawner = TankView.GetBulletSpawner();
     }
     public void Move(float rotation, float forward)
     {
@@ -21,5 +23,9 @@ public class TankController
 
         Quaternion newTankRot = TankView.transform.rotation * Quaternion.Euler(Vector3.up * (rotation * 70 * Time.deltaTime));
         tankRb.MoveRotation(newTankRot);
+    }
+    public void ShootBullet()
+    {
+        bulletSpawner.SpawnBullet(bulletSpawner.transform);
     }
 }

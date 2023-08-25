@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TankView : MonoBehaviour
 {
@@ -7,7 +8,13 @@ public class TankView : MonoBehaviour
     private float rotation;
     private float forward;
     [SerializeField] private Joystick joystick;
+    [SerializeField] private BulletSpawner spawner;
+    [SerializeField] private Button shootButton;
 
+    private void Start()
+    {
+        shootButton.onClick.AddListener(Shoot);
+    }
     private void FixedUpdate()
     {
         Movement();
@@ -34,5 +41,15 @@ public class TankView : MonoBehaviour
     public Rigidbody GetRigidbody()
     {
         return GetComponent<Rigidbody>();
+    }
+
+    public BulletSpawner GetBulletSpawner()
+    {
+        return spawner;
+    }
+
+    public void Shoot()
+    {
+        TankController.ShootBullet();
     }
 }
