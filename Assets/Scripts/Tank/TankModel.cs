@@ -2,14 +2,21 @@ using UnityEngine;
 
 public class TankModel
 {
-    private float speed;
+    private float Speed { get; }
+    private int Health { get; }
+    private TankTypes Type { get; }
+    public AudioClip shootClip;
 
-    public TankModel(float _speed)
+    public TankModel(TankScriptableObject tankScriptableObject)
     {
-        speed = _speed;
+        Speed = tankScriptableObject.speed;
+        Health = tankScriptableObject.health;
+        Type = tankScriptableObject.type;
+        shootClip = tankScriptableObject.shootClip;
     }
+
     public float GetSpeed()
     {
-        return speed;
+        return Speed;
     }
 }
