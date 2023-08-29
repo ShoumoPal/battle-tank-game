@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +11,12 @@ public class TankView : MonoBehaviour
     [SerializeField] private Joystick joystick;
     [SerializeField] private BulletSpawner spawner;
     [SerializeField] private Button shootButton;
+    [SerializeField] private LevelDestroyer destroyer;
 
     private void Start()
     {
         //shootButton.onClick.AddListener(Shoot);
+        destroyer = GameObject.FindGameObjectWithTag("Destroyer").GetComponent<LevelDestroyer>();
     }
     private void FixedUpdate()
     {
@@ -53,5 +56,13 @@ public class TankView : MonoBehaviour
         AudioClip clip = TankController.GetTankModel().shootClip;
         gameObject.GetComponent<AudioSource>().PlayOneShot(clip);
         TankController.ShootBullet();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(destroyer.DestroyLevel());
+        }
     }
 }

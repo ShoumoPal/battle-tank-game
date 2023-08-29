@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 7521452607153178630}
   m_Layer: 0
   m_Name: RedTank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -547,6 +547,8 @@ MonoBehaviour:
   joystick: {fileID: 640583119}
   spawner: {fileID: 6302551024409210893}
   shootButton: {fileID: 1027716327890926541}
+  destroyer: {fileID: 7623028765822084012, guid: 25ef2b3a6c8525245904178e248ada2d,
+    type: 3}
 --- !u!65 &5157239245399581233
 BoxCollider:
   m_ObjectHideFlags: 0
