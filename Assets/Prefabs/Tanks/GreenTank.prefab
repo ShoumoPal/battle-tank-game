@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 1865943029331200120}
   m_Layer: 0
   m_Name: GreenTank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,6 +413,8 @@ MonoBehaviour:
   joystick: {fileID: 640583119}
   spawner: {fileID: 3686150712492422683}
   shootButton: {fileID: 7678038722340297758}
+  destroyer: {fileID: 7623028765822084012, guid: 25ef2b3a6c8525245904178e248ada2d,
+    type: 3}
 --- !u!65 &-3065650647085476080
 BoxCollider:
   m_ObjectHideFlags: 0

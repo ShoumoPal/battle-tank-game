@@ -18,24 +18,35 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         isRunning = false;
+        for(int i  = 0; i < spawnCount; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                if (RandomPoint(Vector3.zero, range, out randomPoint) && spawnCount > 0)
+                    break;
+            }
+            SpawnEnemy(randomPoint);
+        }
+        
+
     }
     void Update()
     {
-        if(RandomPoint(Vector3.zero, range, out randomPoint) && spawnCount > 0)
-        {
-            if(spawnCoroutine == null)
-            {
-                spawnCoroutine = StartCoroutine(SpawnAtRandomPoint());
-            }
-            else
-            {
-                if (!isRunning)
-                {
-                    StopCoroutine(spawnCoroutine);
-                    spawnCoroutine = null;
-                }
-            }
-        }
+        //if(RandomPoint(Vector3.zero, range, out randomPoint) && spawnCount > 0)
+        //{
+        //    if(spawnCoroutine == null)
+        //    {
+        //        spawnCoroutine = StartCoroutine(SpawnAtRandomPoint());
+        //    }
+        //    else
+        //    {
+        //        if (!isRunning)
+        //        {
+        //            StopCoroutine(spawnCoroutine);
+        //            spawnCoroutine = null;
+        //        }
+        //    }
+        //}
     }
 
     IEnumerator SpawnAtRandomPoint()

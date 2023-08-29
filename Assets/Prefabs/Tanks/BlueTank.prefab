@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 3995831786331381209}
   m_Layer: 0
   m_Name: BlueTank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -548,6 +548,8 @@ MonoBehaviour:
   joystick: {fileID: 640583119}
   spawner: {fileID: 8592486584542886010}
   shootButton: {fileID: 868768560285854268}
+  destroyer: {fileID: 7623028765822084012, guid: 25ef2b3a6c8525245904178e248ada2d,
+    type: 3}
 --- !u!65 &2987659678510484748
 BoxCollider:
   m_ObjectHideFlags: 0

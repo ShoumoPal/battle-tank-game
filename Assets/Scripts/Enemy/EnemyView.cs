@@ -49,10 +49,15 @@ public class EnemyView : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            GameObject explosion = Instantiate(EnemyController.GetEnemyModel().Explosion, gameObject.transform.position, Quaternion.identity);
-            
-            Destroy(gameObject);
-            Destroy(explosion, 1.5f);
+            DestroyTank();
         }
+    }
+
+    public void DestroyTank()
+    {
+        GameObject explosion = Instantiate(EnemyController.GetEnemyModel().Explosion, gameObject.transform.position, Quaternion.identity);
+
+        Destroy(gameObject);
+        Destroy(explosion, 1.5f);
     }
 }
