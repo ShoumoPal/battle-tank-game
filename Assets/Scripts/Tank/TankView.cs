@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TankView : MonoBehaviour
+public class TankView : MonoBehaviour, IDamagable
 {
     private TankController TankController { get; set; }
     private float rotation;
@@ -62,7 +62,15 @@ public class TankView : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            StartCoroutine(destroyer.DestroyLevel());
+            TakeDamage(20);
+            Debug.Log("Health: " + TankController.GetTankModel().Health);
+            if(TankController.GetTankModel().Health <= 0)
+                StartCoroutine(destroyer.DestroyLevel());
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        TankController.GetTankModel().Health -= damage;
     }
 }
