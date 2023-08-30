@@ -5,12 +5,12 @@ public class EnemyPatrolState : EnemyState
 {
     public override void OnEnterState()
     {
-
+        base.OnEnterState();
     }
 
     public override void OnExitState()
     {
-
+        base.OnExitState();
     }
 
     public override void Tick()

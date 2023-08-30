@@ -21,7 +21,7 @@ public class TankController
         Vector3 newTankPos = TankView.transform.position + (TankView.transform.forward * TankModel.GetSpeed() * forward * Time.deltaTime);
         tankRb.MovePosition(newTankPos);
 
-        Quaternion newTankRot = TankView.transform.rotation * Quaternion.Euler(Vector3.up * (rotation * 70 * Time.deltaTime));
+        Quaternion newTankRot = TankView.transform.rotation * Quaternion.Euler(Vector3.up * (rotation * 100 * Time.deltaTime));
         tankRb.MoveRotation(newTankRot);
     }
     public TankModel GetTankModel()

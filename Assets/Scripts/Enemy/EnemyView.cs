@@ -11,6 +11,7 @@ public class EnemyView : MonoBehaviour
     private EnemyState currentState;
     public EnemyIdleState IdleState;
     public EnemyPatrolState PatrolState;
+    public EnemyChaseState ChaseState;
 
     private void Start()
     {
@@ -46,6 +47,18 @@ public class EnemyView : MonoBehaviour
         {
             DestroyTank();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+            ChangeState(ChaseState);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+            ChangeState(PatrolState);
     }
 
     public void DestroyTank()
