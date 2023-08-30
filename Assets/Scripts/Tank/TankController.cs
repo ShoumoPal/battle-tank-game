@@ -32,4 +32,16 @@ public class TankController
     {
         bulletSpawner.SpawnBullet(bulletSpawner.transform);
     }
+    public void ApplyDamage(int damage)
+    {
+        if (TankModel.Health - damage <= 0)
+        {
+            //death
+            TankView.DestroyEverything();
+        }
+        else
+        {
+            TankModel.Health -= damage;
+        }
+    }
 }

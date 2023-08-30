@@ -18,7 +18,7 @@ public class TankView : MonoBehaviour, IDamagable
         //shootButton.onClick.AddListener(Shoot);
         destroyer = GameObject.FindGameObjectWithTag("Destroyer").GetComponent<LevelDestroyer>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         Movement();
         if(rotation != 0 || forward != 0)
@@ -64,13 +64,14 @@ public class TankView : MonoBehaviour, IDamagable
         {
             TakeDamage(20);
             Debug.Log("Health: " + TankController.GetTankModel().Health);
-            if(TankController.GetTankModel().Health <= 0)
-                StartCoroutine(destroyer.DestroyLevel());
         }
     }
-
+    public void DestroyEverything()
+    {
+        StartCoroutine(destroyer.DestroyLevel());
+    }
     public void TakeDamage(int damage)
     {
-        TankController.GetTankModel().Health -= damage;
+        TankController.ApplyDamage(damage);
     }
 }
