@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TankView : MonoBehaviour
+public class TankView : MonoBehaviour, IDamagable
 {
     private TankController TankController { get; set; }
     private float rotation;
@@ -18,7 +18,7 @@ public class TankView : MonoBehaviour
         //shootButton.onClick.AddListener(Shoot);
         destroyer = GameObject.FindGameObjectWithTag("Destroyer").GetComponent<LevelDestroyer>();
     }
-    private void FixedUpdate()
+    private void Update()
     {
         Movement();
         if(rotation != 0 || forward != 0)
@@ -60,9 +60,18 @@ public class TankView : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.GetComponent<EnemyView>() || collision.gameObject.GetComponent<BulletView>())
         {
-            StartCoroutine(destroyer.DestroyLevel());
+            TakeDamage(20);
+            Debug.Log("Health: " + TankController.GetTankModel().Health);
         }
+    }
+    public void DestroyEverything()
+    {
+        StartCoroutine(destroyer.DestroyLevel());
+    }
+    public void TakeDamage(int damage)
+    {
+        TankController.ApplyDamage(damage);
     }
 }

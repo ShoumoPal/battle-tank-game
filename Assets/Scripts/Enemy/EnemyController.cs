@@ -18,4 +18,9 @@ public class EnemyController
     {
         return EnemyModel;
     }
+    public void Fire()
+    {
+        BulletSpawner spawner = EnemyView.GetBulletSpawner();
+        spawner.SpawnBullet(spawner.transform);
+    }
 }

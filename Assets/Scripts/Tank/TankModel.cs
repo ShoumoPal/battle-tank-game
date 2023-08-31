@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class TankModel
 {
-    private float Speed { get; }
-    private int Health { get; }
-    private TankTypes Type { get; }
+    public float Speed { get; }
+    public int Health { get; set;  }
+    private TankTypes Type { get; set;  }
     public AudioClip shootClip;
 
     public TankModel(TankScriptableObject tankScriptableObject)

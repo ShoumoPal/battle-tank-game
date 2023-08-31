@@ -38,7 +38,8 @@ public class LevelDestroyer : MonoBehaviour
         yield return new WaitForSeconds(2);
         for(int i = 0; i < enemies.Length; i++)
         {
-            enemies[i].GetComponent<EnemyView>().DestroyTank();
+            if (enemies[i] != null)
+                enemies[i].GetComponent<EnemyView>().DestroyTank();
         }
     }
     private IEnumerator DestroyPlayer()

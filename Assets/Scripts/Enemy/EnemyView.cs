@@ -1,48 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyView : MonoBehaviour
 {
-    private EnemyController EnemyController { get; set; }
-    private NavMeshAgent agent;
+    public EnemyModel EnemyModel { get; set; }
+    public EnemyController EnemyController { get; set; }
+    public NavMeshAgent agent;
+
+    //States
+    private EnemyState currentState;
+    public EnemyIdleState IdleState;
+    public EnemyPatrolState PatrolState;
+    public EnemyChaseState ChaseState;
+    public EnemyAttackState AttackState;
+
+    [SerializeField] private BulletSpawner bulletSpawner;
 
     private void Start()
     {
+        EnemyModel = EnemyController.GetEnemyModel();
+        //Setting Idle as default
+        ChangeState(IdleState);
         agent = GetComponent<NavMeshAgent>();
     }
     void Update()
     {
-        if (agent.remainingDistance <= agent.stoppingDistance) //done with path
+        currentState.Tick();
+    }
+    public void ChangeState(EnemyState newState)
+    {
+        if(currentState != null)
         {
-            Vector3 point;
-            if (RandomPoint(transform.position, EnemyController.GetEnemyModel().Range, out point)) //pass in our centre point and radius of area
-            {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                agent.SetDestination(point);
-            }
+            currentState.OnExitState();
         }
 
+        Debug.Log("Changing state to : " + newState);
+        currentState = newState;
+        currentState.OnEnterState();
     }
+
+    public BulletSpawner GetBulletSpawner()
+    {
+        return bulletSpawner;
+    }
+
     public void SetEnemyController(EnemyController enemyController)
     {
         EnemyController = enemyController;
-    }
-
-    // Random point for AI
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
-    {
-        Vector3 randomPoint = center + Random.insideUnitSphere * range;
-        NavMeshHit hit;
-        if(NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-        {
-            result = hit.position;
-            return true;
-        }
-
-        result = Vector3.zero;
-        return false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -53,9 +57,21 @@ public class EnemyView : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+            ChangeState(ChaseState);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Player"))
+            ChangeState(PatrolState);
+    }
+
     public void DestroyTank()
     {
-        GameObject explosion = Instantiate(EnemyController.GetEnemyModel().Explosion, gameObject.transform.position, Quaternion.identity);
+        GameObject explosion = Instantiate(EnemyModel.Explosion, gameObject.transform.position, Quaternion.identity);
 
         Destroy(gameObject);
         Destroy(explosion, 1.5f);
