@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class EnemyView : MonoBehaviour
 {
     public EnemyModel EnemyModel { get; set; }
-    private EnemyController EnemyController { get; set; }
+    public EnemyController EnemyController { get; set; }
     public NavMeshAgent agent;
 
     //States
@@ -12,12 +12,15 @@ public class EnemyView : MonoBehaviour
     public EnemyIdleState IdleState;
     public EnemyPatrolState PatrolState;
     public EnemyChaseState ChaseState;
+    public EnemyAttackState AttackState;
+
+    [SerializeField] private BulletSpawner bulletSpawner;
 
     private void Start()
     {
         EnemyModel = EnemyController.GetEnemyModel();
         //Setting Idle as default
-        currentState = IdleState;
+        ChangeState(IdleState);
         agent = GetComponent<NavMeshAgent>();
     }
     void Update()
@@ -34,6 +37,11 @@ public class EnemyView : MonoBehaviour
         Debug.Log("Changing state to : " + newState);
         currentState = newState;
         currentState.OnEnterState();
+    }
+
+    public BulletSpawner GetBulletSpawner()
+    {
+        return bulletSpawner;
     }
 
     public void SetEnemyController(EnemyController enemyController)

@@ -60,7 +60,7 @@ public class TankView : MonoBehaviour, IDamagable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.GetComponent<EnemyView>() || collision.gameObject.GetComponent<BulletView>())
         {
             TakeDamage(20);
             Debug.Log("Health: " + TankController.GetTankModel().Health);

@@ -4,10 +4,12 @@ using UnityEngine;
 public abstract class EnemyState : MonoBehaviour
 {
     protected EnemyView EnemyView { set; get; }
+    protected GameObject Player { get; set; }
 
-    private void Awake()
+    private void Start()
     {
         EnemyView = GetComponent<EnemyView>();
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public virtual void OnEnterState()
@@ -19,4 +21,12 @@ public abstract class EnemyState : MonoBehaviour
         this.enabled = false;
     }
     public abstract void Tick();
+
+    public float GetDistanceFromPlayer()
+    {
+        if (Player)
+            return Vector3.Distance(transform.position, Player.transform.position);
+        else
+            return 0f;
+    }
 }
