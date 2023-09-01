@@ -6,7 +6,7 @@ public class TankSpawner : MonoBehaviour
 {
     [SerializeField] private TankScriptableObjectList TankScriptableObjectList;
 
-    private void Start()
+    private void Awake()
     {
         CreateTank();
     }
