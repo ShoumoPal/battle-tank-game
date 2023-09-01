@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TankView : MonoBehaviour, IDamagable
+public class TankView : Subject, IDamagable
 {
     private TankController TankController { get; set; }
     private float rotation;
@@ -53,6 +53,7 @@ public class TankView : MonoBehaviour, IDamagable
 
     public void Shoot()
     {
+        NotifyObservers();
         AudioClip clip = TankController.GetTankModel().shootClip;
         gameObject.GetComponent<AudioSource>().PlayOneShot(clip);
         TankController.ShootBullet();
