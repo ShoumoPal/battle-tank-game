@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.PlayerLoop;
@@ -13,6 +14,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int spawnCount;
     [SerializeField] private float range;
     private bool isRunning;
+
+    [SerializeField] public List<EnemyController> ListofEnemies { get; private set; } = new List<EnemyController>();
 
     // Start is called before the first frame update
     private void Start()
@@ -64,6 +67,7 @@ public class EnemySpawner : MonoBehaviour
         EnemyScriptableObject obj = enemyList.enemies[randomNumber];
         EnemyModel model = new EnemyModel(obj);
         EnemyController enemyController = new EnemyController(model, obj.enemyView, spawnPoint);
+        ListofEnemies.Add(enemyController);
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)

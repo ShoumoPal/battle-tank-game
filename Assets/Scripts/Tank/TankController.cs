@@ -37,11 +37,16 @@ public class TankController
         if (TankModel.Health - damage <= 0)
         {
             //death
-            TankView.DestroyEverything();
+            DestroyTank();
+            //TankView.DestroyEverything();
         }
         else
         {
             TankModel.Health -= damage;
         }
+    }
+    public void DestroyTank()
+    {
+        TankView.DestroyTank();
     }
 }
