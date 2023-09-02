@@ -23,4 +23,8 @@ public class EnemyController
         BulletSpawner spawner = EnemyView.GetBulletSpawner();
         spawner.SpawnBullet(spawner.transform);
     }
+    public void DestroyTank()
+    {
+        EnemyView.DestroyTank();
+    }
 }

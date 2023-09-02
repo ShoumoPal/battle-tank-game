@@ -8,6 +8,7 @@ public class TankView : Subject, IDamagable
     private TankController TankController { get; set; }
     private float rotation;
     private float forward;
+    private TankModel model;
     [SerializeField] private Joystick joystick;
     [SerializeField] private BulletSpawner spawner;
     [SerializeField] private Button shootButton;
@@ -17,6 +18,7 @@ public class TankView : Subject, IDamagable
     {
         //shootButton.onClick.AddListener(Shoot);
         destroyer = GameObject.FindGameObjectWithTag("Destroyer").GetComponent<LevelDestroyer>();
+        model = TankController.GetTankModel();
     }
     private void Update()
     {
@@ -69,7 +71,19 @@ public class TankView : Subject, IDamagable
     }
     public void DestroyEverything()
     {
-        StartCoroutine(destroyer.DestroyLevel());
+
+    }
+    public void DestroyTank()
+    {
+        destroyer.isDead = true;
+        GameObject explosion = null;
+        if(TankController != null)
+        {
+            explosion = Instantiate(model.explosion, gameObject.transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
+            Destroy(explosion, 1.5f);
+        }
     }
     public void TakeDamage(int damage)
     {

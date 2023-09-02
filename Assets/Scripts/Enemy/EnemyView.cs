@@ -71,7 +71,9 @@ public class EnemyView : MonoBehaviour
 
     public void DestroyTank()
     {
-        GameObject explosion = Instantiate(EnemyModel.Explosion, gameObject.transform.position, Quaternion.identity);
+        GameObject explosion = null;
+        if (gameObject)
+            explosion = Instantiate(EnemyModel.Explosion, gameObject.transform.position, Quaternion.identity);
 
         Destroy(gameObject);
         Destroy(explosion, 1.5f);

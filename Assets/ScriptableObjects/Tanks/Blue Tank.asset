@@ -18,3 +18,4 @@ MonoBehaviour:
   speed: 10
   tankView: {fileID: 762570285120580284, guid: 4b3051423339fa845815955a652783f0, type: 3}
   shootClip: {fileID: 8300000, guid: 672a9941361ad494a99fba36759eca80, type: 3}
+  explosion: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}

@@ -9,4 +9,5 @@ public class TankScriptableObject: ScriptableObject
     public float speed;
     public TankView tankView;
     public AudioClip shootClip;
+    public GameObject explosion;
 }

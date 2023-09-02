@@ -308,6 +308,16 @@ PrefabInstance:
       propertyPath: Level
       value: 
       objectReference: {fileID: 1708714842}
+    - target: {fileID: 7623028765822084012, guid: 25ef2b3a6c8525245904178e248ada2d,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1997276801}
+    - target: {fileID: 7623028765822084012, guid: 25ef2b3a6c8525245904178e248ada2d,
+        type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 143347414}
     - target: {fileID: 8332257056645075402, guid: 25ef2b3a6c8525245904178e248ada2d,
         type: 3}
       propertyPath: m_RootOrder

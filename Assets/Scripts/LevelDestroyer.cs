@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class LevelDestroyer : MonoBehaviour
 {
-    private GameObject[] enemies;
-    private GameObject player;
+    [SerializeField] private EnemySpawner spawner;
     [SerializeField] private GameObject Level;
-
+    public bool isDead { get; set; } = false;
+    private bool isRunning = false;
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
-        
+        if(isDead && !isRunning)
+        {
+            StartCoroutine(DestroyLevel());
+        }
     }
 
     public IEnumerator DestroyLevel()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Debug.Log("Enemy count: " + enemies.Length);
-        player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log("Player: " + player.name);
-
+        isRunning = true;
         Debug.Log("Coroutine started");
-        StartCoroutine(DestroyPlayer());
+        //StartCoroutine(DestroyPlayer());
         StartCoroutine(DestroyEnemies());
         StartCoroutine(DestroyGround());
         yield return null;
@@ -36,17 +35,22 @@ public class LevelDestroyer : MonoBehaviour
     private IEnumerator DestroyEnemies()
     {
         yield return new WaitForSeconds(2);
-        for(int i = 0; i < enemies.Length; i++)
+
+        for(int i = 0; i < spawner.ListofEnemies.Count; i++)
         {
-            if (enemies[i] != null)
-                enemies[i].GetComponent<EnemyView>().DestroyTank();
+            if (spawner.ListofEnemies[i] != null)
+            {
+                Debug.Log("List count: " + spawner.ListofEnemies.Count);
+                spawner.ListofEnemies[i].DestroyTank();
+            }
+               
         }
     }
-    private IEnumerator DestroyPlayer()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(player);
-    }
+    //private IEnumerator DestroyPlayer()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //    Destroy(player);
+    //}
 
 
 }

@@ -6,6 +6,7 @@ public class TankModel
     public int Health { get; set;  }
     private TankTypes Type { get; set;  }
     public AudioClip shootClip;
+    public GameObject explosion { get; }
 
     public TankModel(TankScriptableObject tankScriptableObject)
     {
@@ -13,6 +14,7 @@ public class TankModel
         Health = tankScriptableObject.health;
         Type = tankScriptableObject.type;
         shootClip = tankScriptableObject.shootClip;
+        explosion = tankScriptableObject.explosion;
     }
 
     public float GetSpeed()
