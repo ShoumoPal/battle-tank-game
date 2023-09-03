@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class BulletView : MonoBehaviour
@@ -15,10 +16,12 @@ public class BulletView : MonoBehaviour
     private void Start()
     {
         BulletController.Fly();
+        StartCoroutine(DestroyBulletAfterSeconds());
     }
-    private void Update()
+    private IEnumerator DestroyBulletAfterSeconds()
     {
-        Destroy(gameObject, 5f);
+        yield return new WaitForSeconds(5);
+        Destroy(gameObject);
     }
     private void Explode()
     {

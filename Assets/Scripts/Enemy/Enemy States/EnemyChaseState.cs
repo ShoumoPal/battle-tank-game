@@ -14,10 +14,10 @@ public class EnemyChaseState : EnemyState
 
     public override void Tick()
     {
-        if(EnemyView && Player)
+        if(EnemyView && Tank != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, EnemyView.EnemyModel.Speed * Time.deltaTime * 0.25f);
-            transform.LookAt(Player.transform);
+            transform.position = Vector3.MoveTowards(transform.position, Tank.TankView.transform.position, EnemyView.EnemyModel.Speed * Time.deltaTime * 0.25f);
+            transform.LookAt(Tank.TankView.transform);
 
             if(GetDistanceFromPlayer() <= 10f)
             {

@@ -2,16 +2,19 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class TankSpawner : MonoBehaviour
+public class TankSpawner : SingletonGeneric<TankSpawner>
 {
     [SerializeField] private TankScriptableObjectList TankScriptableObjectList;
     public TankController Player { get; private set; }
 
-    private void Awake()
+    private void OnEnable()
     {
         CreateTank();
     }
-
+    public TankController GetTankController()
+    {
+        return Player;
+    }
     private TankController CreateTank()
     {
         int randomNumber = (int)Random.Range(0, TankScriptableObjectList.tanks.Length - 1);
