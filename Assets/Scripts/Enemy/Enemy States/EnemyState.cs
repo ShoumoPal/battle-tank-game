@@ -4,14 +4,13 @@ using UnityEngine;
 public abstract class EnemyState : MonoBehaviour
 {
     protected EnemyView EnemyView { set; get; }
-    protected GameObject Player { get; set; }
+    protected TankController Tank { set; get; } = null;
 
     private void Start()
     {
         EnemyView = GetComponent<EnemyView>();
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Tank = TankSpawner.Instance.GetTankController();
     }
-
     public virtual void OnEnterState()
     {
         this.enabled = true;
@@ -24,8 +23,8 @@ public abstract class EnemyState : MonoBehaviour
 
     public float GetDistanceFromPlayer()
     {
-        if (Player)
-            return Vector3.Distance(transform.position, Player.transform.position);
+        if (Tank != null)
+            return Vector3.Distance(transform.position, Tank.TankView.transform.position);
         else
             return 0f;
     }

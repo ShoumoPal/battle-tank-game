@@ -3,7 +3,7 @@ using UnityEngine;
 public class TankController
 {
     private TankModel TankModel { get; }
-    private TankView TankView { get; }
+    public TankView TankView { get; }
     private Rigidbody tankRb;
     private BulletSpawner bulletSpawner;
 

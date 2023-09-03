@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : SingletonGeneric<EnemySpawner>
 {
     [SerializeField] private EnemyScriptableObjectList enemyList;
     private Vector3 randomPoint;
