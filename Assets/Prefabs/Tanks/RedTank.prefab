@@ -971,6 +971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 726435892107320427}
   - component: {fileID: 6302551024409210893}
+  - component: {fileID: 9011675759081827517}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -986,7 +987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2899533805512746293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.62, z: 1.35}
+  m_LocalPosition: {x: 0, y: 1.62, z: 2.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1006,6 +1007,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletList: {fileID: 11400000, guid: d7838f896f560c64086c6231375e1af0, type: 2}
+--- !u!114 &9011675759081827517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2899533805512746293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36f119fc0e5a18458ade978ff732dfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledList: []
 --- !u!1 &3843752016663663707
 GameObject:
   m_ObjectHideFlags: 0
