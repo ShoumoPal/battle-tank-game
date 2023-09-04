@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelDestroyer : MonoBehaviour
+public class LevelDestroyer : SingletonGeneric<LevelDestroyer>
 {
     [SerializeField] private EnemySpawner spawner;
     [SerializeField] private GameObject Level;

@@ -6,6 +6,7 @@ public class EnemyController
     private EnemyModel EnemyModel { get; set; }
     private EnemyView EnemyView { get; set; }
     private NavMeshAgent NavMeshAgent { get; set; }
+    private BulletSpawner BulletSpawner { get; set; }
 
     public EnemyController(EnemyModel model, EnemyView view, Vector3 spawnPoint)
     {
@@ -13,6 +14,7 @@ public class EnemyController
         EnemyView = GameObject.Instantiate<EnemyView>(view, spawnPoint, Quaternion.identity);
         Debug.Log("Enemy created");
         EnemyView.SetEnemyController(this);
+        BulletSpawner = EnemyView.GetBulletSpawner();
     }
     public EnemyModel GetEnemyModel()
     {
@@ -20,8 +22,7 @@ public class EnemyController
     }
     public void Fire()
     {
-        BulletSpawner spawner = EnemyView.GetBulletSpawner();
-        spawner.SpawnBullet(spawner.transform);
+        BulletSpawner.SpawnBullet(BulletSpawner.transform);
     }
     public void DestroyTank()
     {

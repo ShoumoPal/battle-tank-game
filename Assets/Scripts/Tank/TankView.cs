@@ -12,12 +12,10 @@ public class TankView : Subject, IDamagable
     [SerializeField] private Joystick joystick;
     [SerializeField] private BulletSpawner spawner;
     [SerializeField] private Button shootButton;
-    [SerializeField] private LevelDestroyer destroyer;
 
     private void Start()
     {
         //shootButton.onClick.AddListener(Shoot);
-        destroyer = GameObject.FindGameObjectWithTag("Destroyer").GetComponent<LevelDestroyer>();
         model = TankController.GetTankModel();
     }
     private void Update()
@@ -75,7 +73,7 @@ public class TankView : Subject, IDamagable
     }
     public void DestroyTank()
     {
-        destroyer.isDead = true;
+        LevelDestroyer.Instance.isDead = true;
         GameObject explosion = null;
         if(TankController != null)
         {

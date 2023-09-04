@@ -25,7 +25,8 @@ public class EnemyView : MonoBehaviour
     }
     void Update()
     {
-        currentState.Tick();
+        if(TankSpawner.Instance.Player.TankView != null)
+            currentState.Tick();
     }
     public void ChangeState(EnemyState newState)
     {
@@ -72,7 +73,7 @@ public class EnemyView : MonoBehaviour
     public void DestroyTank()
     {
         GameObject explosion = null;
-        if (gameObject)
+        if (gameObject != null)
             explosion = Instantiate(EnemyModel.Explosion, gameObject.transform.position, Quaternion.identity);
 
         Destroy(gameObject);

@@ -19,8 +19,24 @@ public class BulletController
     {
         bulletRb.velocity = spawn.forward * BulletModel.Speed;
     }
+    public void Enable()
+    {
+        BulletView.Enable();
+    }
+    public void Disable()
+    {
+        BulletView.Disable();
+    }
+    public void SetParent(Transform parent)
+    {
+        BulletView.SetParent(parent);
+    }
     public BulletModel GetBulletModel()
     {
         return BulletModel;
+    }
+    public void SetTransform(Transform transform)
+    {
+        BulletView.SetTransform(transform);
     }
 }
