@@ -39,7 +39,10 @@ public class EnemyView : MonoBehaviour
         currentState = newState;
         currentState.OnEnterState();
     }
-
+    public AudioSource GetAudioSource()
+    {
+        return gameObject.GetComponent<AudioSource>();
+    }
     public BulletSpawner GetBulletSpawner()
     {
         return bulletSpawner;
@@ -74,9 +77,11 @@ public class EnemyView : MonoBehaviour
     {
         GameObject explosion = null;
         if (gameObject != null)
+        {
             explosion = Instantiate(EnemyModel.Explosion, gameObject.transform.position, Quaternion.identity);
 
-        Destroy(gameObject);
-        Destroy(explosion, 1.5f);
+            Destroy(gameObject);
+            Destroy(explosion, 1.5f);
+        }
     }
 }

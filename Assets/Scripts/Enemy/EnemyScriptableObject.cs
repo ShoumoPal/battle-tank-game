@@ -7,4 +7,5 @@ public class EnemyScriptableObject : ScriptableObject
     public float speed;
     public float range;
     public GameObject deathExplosion;
+    public AudioClip shootClip;
 }

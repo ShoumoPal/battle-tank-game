@@ -12,6 +12,7 @@ public class TankView : Subject, IDamagable
     [SerializeField] private Joystick joystick;
     [SerializeField] private BulletSpawner spawner;
     [SerializeField] private Button shootButton;
+    [SerializeField] private HealthBar healthBar;   
 
     private void Start()
     {
@@ -40,6 +41,10 @@ public class TankView : Subject, IDamagable
     {
         TankController = _tankController;
     }
+    public HealthBar GetHealthBar()
+    {
+        return healthBar;
+    }
 
     public Rigidbody GetRigidbody()
     {
@@ -66,10 +71,6 @@ public class TankView : Subject, IDamagable
             TakeDamage(20);
             Debug.Log("Health: " + TankController.GetTankModel().Health);
         }
-    }
-    public void DestroyEverything()
-    {
-
     }
     public void DestroyTank()
     {

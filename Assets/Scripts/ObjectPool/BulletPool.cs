@@ -21,10 +21,10 @@ public class BulletPool : ServicePool<BulletController>
 
     public override void ReturnItem(BulletController bulletController)
     {
-        PooledItem<BulletController> pooledItem = pooledList.Find(i => i.Item == bulletController);
+        PooledItem<BulletController> pooledItem = pooledList.Find(i => i.Item.Equals(bulletController));
         if (pooledItem != null)
         {
-            bulletController.SetTransform(spawn);
+            //bulletController.SetTransform(spawn);
             pooledItem.isUsed = false;
             bulletController.Disable();
         }

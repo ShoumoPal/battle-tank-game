@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyList: {fileID: 11400000, guid: 3d838b23b76d73e4ea89914d67fcc2e7, type: 2}
-  spawnCount: 5
+  spawnCount: 7
   range: 30
 --- !u!4 &143347415
 Transform:
@@ -589,7 +589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1304999366
 Transform:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletController
 {
-    private BulletView BulletView { get; }
+    public BulletView BulletView { get; }
     private BulletModel BulletModel { get; }
     private Rigidbody bulletRb;
     private Transform spawn;
@@ -15,7 +15,7 @@ public class BulletController
         BulletView.SetBulletController(this);
         bulletRb = BulletView.GetRigidbody();
     }
-    public void Fly()
+    public void Fly(Transform spawn)
     {
         bulletRb.velocity = spawn.forward * BulletModel.Speed;
     }

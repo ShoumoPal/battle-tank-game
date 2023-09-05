@@ -19,7 +19,7 @@ public class BulletView : MonoBehaviour
     private void Start()
     {
         BulletPool = TankSpawner.Instance.Player.TankView.GetBulletSpawner().GetComponent<BulletPool>();
-        BulletController.Fly();
+        //BulletController.Fly();
         StartCoroutine(DestroyBulletAfterSeconds());
     }
     private IEnumerator DestroyBulletAfterSeconds()
@@ -48,7 +48,7 @@ public class BulletView : MonoBehaviour
             //Tank takes damage
             damagable.TakeDamage(20);
         }
-        else if (!collision.gameObject.GetComponent<BulletSpawner>())
+        if (!collision.gameObject.GetComponent<BulletSpawner>())
         {
             Explode();
         }
@@ -72,6 +72,7 @@ public class BulletView : MonoBehaviour
     internal void SetTransform(Transform transform)
     {
         gameObject.transform.position = transform.position;
-        gameObject.transform.localRotation = Quaternion.Euler(transform.forward);
+        gameObject.transform.forward = transform.forward;
+        gameObject.transform.LookAt(transform.forward * 100);
     }
 }

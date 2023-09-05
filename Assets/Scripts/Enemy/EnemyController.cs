@@ -22,6 +22,7 @@ public class EnemyController
     }
     public void Fire()
     {
+        EnemyView.GetAudioSource().PlayOneShot(EnemyModel.ShootClip);
         BulletSpawner.SpawnBullet(BulletSpawner.transform);
     }
     public void DestroyTank()
