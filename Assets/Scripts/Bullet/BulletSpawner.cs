@@ -11,6 +11,7 @@ public class BulletSpawner : MonoBehaviour
     {
         bulletPool = TankSpawner.Instance.Player.TankView.GetBulletSpawner().GetComponent<BulletPool>();
         Debug.Log("Bullet pool: " + bulletPool.gameObject.name);
+        
         //for(int i = 0; i < 5; i++)
         //{
         //    //Creating Pool
@@ -25,8 +26,8 @@ public class BulletSpawner : MonoBehaviour
         BulletModel model = new BulletModel(obj);
         BulletController bulletController = bulletPool.GetBullet(obj.bulletView, model, spawn);
 
-        bulletController.Fly();
-        bulletController.SetTransform(transform);
+        bulletController.Fly(spawn);
+        bulletController.SetTransform(spawn);
         bulletController.Enable();
 
         bulletController.SetParent(gameObject.transform);

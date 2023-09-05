@@ -25,7 +25,7 @@ public class ServicePool<T> : SingletonGeneric<ServicePool<T>> where T: class
     {
         PooledItem<T> pooledItem = new PooledItem<T>();
         pooledItem.Item = CreateItem();
-        pooledItem.isUsed = true;
+        pooledItem.isUsed = false;
         pooledList.Add(pooledItem);
         return pooledItem.Item;
     }
