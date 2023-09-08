@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Subject class for Observer Pattern */
+
 public abstract class Subject : MonoBehaviour
 {
     private List<IObservers> _observers = new List<IObservers>();

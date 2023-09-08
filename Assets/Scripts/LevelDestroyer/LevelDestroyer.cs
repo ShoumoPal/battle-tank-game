@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* Level destroyer for destroying everything slowly */
+
 public class LevelDestroyer : SingletonGeneric<LevelDestroyer>
 {
     [SerializeField] private EnemySpawner spawner;

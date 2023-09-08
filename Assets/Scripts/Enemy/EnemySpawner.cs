@@ -6,6 +6,8 @@ using UnityEngine.AI;
 using UnityEngine.PlayerLoop;
 using Random = UnityEngine.Random;
 
+/* Spawning enemies */
+
 public class EnemySpawner : SingletonGeneric<EnemySpawner>
 {
     [SerializeField] private EnemyScriptableObjectList enemyList;
@@ -33,33 +35,15 @@ public class EnemySpawner : SingletonGeneric<EnemySpawner>
         
 
     }
-    void Update()
-    {
-        //if(RandomPoint(Vector3.zero, range, out randomPoint) && spawnCount > 0)
-        //{
-        //    if(spawnCoroutine == null)
-        //    {
-        //        spawnCoroutine = StartCoroutine(SpawnAtRandomPoint());
-        //    }
-        //    else
-        //    {
-        //        if (!isRunning)
-        //        {
-        //            StopCoroutine(spawnCoroutine);
-        //            spawnCoroutine = null;
-        //        }
-        //    }
-        //}
-    }
 
-    IEnumerator SpawnAtRandomPoint()
-    {
-        isRunning = true;
-        yield return new WaitForSeconds(3);
-        SpawnEnemy(randomPoint);
-        spawnCount--;
-        isRunning = false;
-    }
+    //IEnumerator SpawnAtRandomPoint()
+    //{
+    //    isRunning = true;
+    //    yield return new WaitForSeconds(3);
+    //    SpawnEnemy(randomPoint);
+    //    spawnCount--;
+    //    isRunning = false;
+    //}
     
     private void SpawnEnemy(Vector3 spawnPoint)
     {

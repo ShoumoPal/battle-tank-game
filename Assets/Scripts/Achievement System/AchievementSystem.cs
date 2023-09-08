@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+/* This class contains all three Achievements, i.e-  10, 25, 50 bullets fired */
+
 public class AchievementSystem : MonoBehaviour, IObservers
 {
     private TankView player;
@@ -30,7 +32,7 @@ public class AchievementSystem : MonoBehaviour, IObservers
     private void Start()
     {
         numberOfBullets = 0;
-        player = GameObject.FindObjectOfType<TankView>();
+        player = TankSpawner.Instance.Player.TankView;
         transform.SetParent(player.transform);
         player.AddObserver(this);
     }

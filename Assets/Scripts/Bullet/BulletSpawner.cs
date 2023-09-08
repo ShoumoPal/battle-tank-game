@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/* Spawner for bullet */
+
 public class BulletSpawner : MonoBehaviour 
 {
     private BulletPool bulletPool;
