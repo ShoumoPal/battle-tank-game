@@ -2,5 +2,7 @@
 
 public interface IObservers
 {
-    public void OnNotify();
+    public void OnNotifyBullets();
+    public void OnNotifyEnemy();
+    public bool OnNotifyDistanceTravelled(float _distance);
 }

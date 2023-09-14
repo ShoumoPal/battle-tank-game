@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /* Subject class for Observer Pattern */
 
 public abstract class Subject : MonoBehaviour
 {
-    private List<IObservers> _observers = new List<IObservers>();
+    public List<IObservers> _observers = new List<IObservers>();
 
     public void AddObserver(IObservers observer)
     {
@@ -15,8 +16,16 @@ public abstract class Subject : MonoBehaviour
     {
         _observers.Remove(observer);
     }
-    protected void NotifyObservers()
+    public void NotifyBulletObservers()
     {
-        _observers.ForEach((observer) => { observer.OnNotify(); });
+        _observers.ForEach((observer) => { observer.OnNotifyBullets(); });
+    }
+    public void NotifyEnemyObservers()
+    {
+        _observers.ForEach((observer) => { observer.OnNotifyEnemy(); });
+    }
+    public void NotifyDistanceTravelled(float _distance, out bool _stopRunning)
+    {
+        _stopRunning = _observers.First().OnNotifyDistanceTravelled(_distance);
     }
 }

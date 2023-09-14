@@ -3,25 +3,37 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* TankView for MVC */
+
 public class TankView : Subject, IDamagable
 {
     private TankController TankController { get; set; }
+    private Vector3 _prevLoc;
+    private float _totalDistance;
+    private bool isRunning;
     private float rotation;
     private float forward;
     private TankModel model;
     [SerializeField] private Joystick joystick;
     [SerializeField] private BulletSpawner spawner;
     [SerializeField] private Button shootButton;
-    [SerializeField] private HealthBar healthBar;   
+    [SerializeField] private HealthBar healthBar;
 
     private void Start()
     {
         //shootButton.onClick.AddListener(Shoot);
         model = TankController.GetTankModel();
+        isRunning = true;
+    }
+    private void FixedUpdate()
+    {
+        if (isRunning)
+            RecordDistance();
     }
     private void Update()
     {
         Movement();
+        
         if(rotation != 0 || forward != 0)
         {
             TankController.Move(rotation, forward);
@@ -30,6 +42,12 @@ public class TankView : Subject, IDamagable
     private void LateUpdate()
     {
         Camera.main.transform.position = transform.position + new Vector3(-40f, 40f, -25f);
+    }
+    private void RecordDistance()
+    {
+        _totalDistance = Vector3.Distance(transform.position, _prevLoc);
+        NotifyDistanceTravelled(_totalDistance, out isRunning);
+        _prevLoc = transform.position;
     }
     private void Movement()
     {
@@ -58,7 +76,7 @@ public class TankView : Subject, IDamagable
 
     public void Shoot()
     {
-        NotifyObservers();
+        NotifyBulletObservers();
         AudioClip clip = TankController.GetTankModel().shootClip;
         gameObject.GetComponent<AudioSource>().PlayOneShot(clip);
         TankController.ShootBullet();
@@ -74,7 +92,7 @@ public class TankView : Subject, IDamagable
     }
     public void DestroyTank()
     {
-        LevelDestroyer.Instance.isDead = true;
+        StartCoroutine(LevelDestroyer.Instance.DestroyLevel());
         GameObject explosion = null;
         if(TankController != null)
         {
@@ -87,5 +105,9 @@ public class TankView : Subject, IDamagable
     public void TakeDamage(int damage)
     {
         TankController.ApplyDamage(damage);
+    }
+    private void OnDisable()
+    {
+        RemoveObserver(AchievementSystem.Instance);
     }
 }

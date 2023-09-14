@@ -10,20 +10,11 @@ public class LevelDestroyer : SingletonGeneric<LevelDestroyer>
     [SerializeField] private GameObject Level;
     public bool isDead { get; set; } = false;
     private bool isRunning = false;
-    // Start is called before the first frame update
-    void Update()
-    {
-        if(isDead && !isRunning)
-        {
-            StartCoroutine(DestroyLevel());
-        }
-    }
 
     public IEnumerator DestroyLevel()
     {
         isRunning = true;
         Debug.Log("Coroutine started");
-        //StartCoroutine(DestroyPlayer());
         StartCoroutine(DestroyEnemies());
         StartCoroutine(DestroyGround());
         yield return null;
@@ -43,16 +34,9 @@ public class LevelDestroyer : SingletonGeneric<LevelDestroyer>
             if (spawner.ListofEnemies[i] != null)
             {
                 Debug.Log("List count: " + spawner.ListofEnemies.Count);
-                spawner.ListofEnemies[i].DestroyTank();
+                spawner.ListofEnemies[i]?.DestroyTank();
             }
                
         }
     }
-    //private IEnumerator DestroyPlayer()
-    //{
-    //    yield return new WaitForSeconds(1);
-    //    Destroy(player);
-    //}
-
-
 }
