@@ -33,11 +33,13 @@ public class BulletView : MonoBehaviour
         GameObject explosion = Instantiate(model.explosionType, gameObject.transform.position, gameObject.transform.rotation);
 
         if (gameObject != null)
+        {
             BulletController.GetBulletModel().explosionSource.PlayOneShot(BulletController.GetBulletModel().explosionClip);
 
-        Destroy(explosion, 1.5f);
-        Disable();
-        BulletPool.ReturnItem(BulletController);
+            Destroy(explosion, 1.5f);
+            Disable();
+            BulletPool.ReturnItem(BulletController);
+        }   
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -47,6 +49,10 @@ public class BulletView : MonoBehaviour
             IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
             //Tank takes damage
             damagable.TakeDamage(20);
+        }
+        if (collision.gameObject.GetComponent<EnemyView>())
+        {
+            collision.gameObject.GetComponent<EnemyView>().NotifyEnemyObservers();
         }
         if (!collision.gameObject.GetComponent<BulletSpawner>())
         {

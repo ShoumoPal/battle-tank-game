@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using UnityEngine;
 
+/* Generic pool for Object pooling */
+
 public class ServicePool<T> : SingletonGeneric<ServicePool<T>> where T: class
 {
     [SerializeField] protected List<PooledItem<T>> pooledList = new List<PooledItem<T>>();

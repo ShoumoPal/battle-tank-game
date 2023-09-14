@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyView : MonoBehaviour
+/* EnemyView for MVC */
+
+public class EnemyView : Subject
 {
     public EnemyModel EnemyModel { get; set; }
     public EnemyController EnemyController { get; set; }
@@ -16,6 +18,10 @@ public class EnemyView : MonoBehaviour
 
     [SerializeField] private BulletSpawner bulletSpawner;
 
+    private void OnEnable()
+    {
+        AddObserver(AchievementSystem.Instance);
+    }
     private void Start()
     {
         EnemyModel = EnemyController.GetEnemyModel();
@@ -76,12 +82,17 @@ public class EnemyView : MonoBehaviour
     public void DestroyTank()
     {
         GameObject explosion = null;
-        if (gameObject != null)
+        if (this)
         {
+            //NotifyEnemyObservers();
             explosion = Instantiate(EnemyModel.Explosion, gameObject.transform.position, Quaternion.identity);
 
             Destroy(gameObject);
             Destroy(explosion, 1.5f);
         }
+    }
+    private void OnDestroy()
+    {
+        RemoveObserver(AchievementSystem.Instance);
     }
 }

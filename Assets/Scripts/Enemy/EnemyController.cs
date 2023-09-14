@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+/* Enemy Controller for MVC */
+
 public class EnemyController
 {
     private EnemyModel EnemyModel { get; set; }

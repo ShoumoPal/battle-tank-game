@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 
+/* Health Bar for Tank */
+
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private TankView tankView;
